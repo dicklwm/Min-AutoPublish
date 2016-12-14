@@ -1,0 +1,15 @@
+.ant-layout-aside .ant-layout-container {
+    margin-left: 224px;
+    transition: all 0.3s ease;
+    margin-top: 24px;
+    }
+
+.ant-layout-aside .ant-layout-content {
+    background: #fff;
+    padding: 0 24px;
+    }
+
+.ant-layout-aside-collapse .ant-layout-container{
+    margin-left:64px;
+    transition: all 0.3s ease;
+    }
