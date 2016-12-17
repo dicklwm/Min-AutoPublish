@@ -54,7 +54,7 @@
 .ant-layout-aside .ant-layout-sider {
     width: 224px;
     background: #404040;
-    position: absolute;
+    position: fixed ;
     overflow: visible;
     padding-bottom: 24px;
     height: 100%;
@@ -115,7 +115,7 @@
 .ant-layout-aside .ant-aside-action {
     height: 42px;
     width: 224px;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     background: #656565;
     color: #fff;

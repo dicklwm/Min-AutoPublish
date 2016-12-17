@@ -7,18 +7,17 @@
 import React, {PropTypes, Component} from 'react'
 import './index.css'
 
-export default class Content extends Component {
+export default class Container extends Component {
 
-    static PropTypes= {
-        info:PropTypes.info
+    static PropTypes={
+        children: PropTypes.children
     }
 
     render() {
         return (
             <article className="ant-layout-container">
                 <div className="ant-layout-content">
-                    <div style={{height: 499}}>
-                    </div>
+                    {this.props.children}
                 </div>
             </article>
         )

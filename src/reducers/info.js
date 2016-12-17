@@ -9,7 +9,6 @@ const InitState = {
 }
 
 export default function info(state=InitState, action) {
-    console.log('info reducers',action);
     switch (action.type){
         case TypeOfActions.GET_INIT:
             return {...state,info:action.info,project:action.project}

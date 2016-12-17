@@ -9,9 +9,9 @@ import {init, logout} from '../../api';
 import {message} from 'antd';
 import {hashHistory} from 'react-router';
 import AsideCollapse from '../../components/Layout/AsideCollapse';
-import './index.css'
 import Header from '../../components/Layout/Header';
-import Footer from '../../components/Layout/Footer';
+// import Footer from '../../components/Layout/Footer';
+import Container from '../../components/Layout/Container';
 
 const Home=React.createClass({
 
@@ -62,17 +62,11 @@ const Home=React.createClass({
                 />
 
                 <Header Logout={this.handleLogout} SelectedKeys={this.state.SelectedKeys}/>
-                {/*内容*/}
-                <article className="ant-layout-container">
-                    <div className="ant-layout-content">
-                        <div style={{height: 499}}>
-                            {/*嵌套路由*/}
-                            {this.props.children}
-                        </div>
-                    </div>
-                </article>
-
-                <Footer/>
+                {/*内容 + 嵌套路由*/}
+                <Container>
+                    {this.props.children}
+                </Container>
+                {/*<Footer/>*/}
             </div>
         )
     },

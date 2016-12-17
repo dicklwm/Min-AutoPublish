@@ -9,10 +9,12 @@ import {init} from '../../api';
 import {Provider} from 'react-redux';
 import {createStore, compose} from 'redux';
 import reducer from '../../reducers';
-import Me from '../../components/Me';
-import Projects from '../../components/Projects';
-import Repo from '../../components/Repo';
-import Index from '../../components/Index';
+
+// 导入组件
+import Me from '../Me';
+import Projects from '../Projects';
+import Repo from '../Repo';
+import Index from '../Index';
 // import Page404 from '../../components/Page404';
 
 var store=createStore(reducer, compose(
