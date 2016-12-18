@@ -5,19 +5,28 @@ import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as actions from '../../actions';
-import {Row, Col} from 'antd';
+import {Row, Col, Spin} from 'antd';
 import ProjectCard from '../../components/ProjectCard';
 
 const Me=React.createClass({
 
+    getInitialState(){
+        return {
+            loading: true
+        }
+    },
+
     render(){
         return (
-            <div>
+            <Spin spinning={this.state.loading}>
                 <Row>
                     {this.makeCards()}
                 </Row>
-            </div>
+            </Spin>
         )
+    },
+    componentDidMount(){
+        this.setState({loading: false})
     },
     makeCards(){
         const {MeInfo} = this.props;

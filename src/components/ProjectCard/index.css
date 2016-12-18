@@ -1,6 +1,7 @@
 .project-card{
     margin:10px;
     cursor: pointer;
+    height:150px;
     }
 .work-braek{
     word-break: break-all;

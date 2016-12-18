@@ -9,6 +9,7 @@ import {init} from '../../api';
 import {Provider} from 'react-redux';
 import {createStore, compose} from 'redux';
 import reducer from '../../reducers';
+import {syncHistoryWithStore} from 'react-router-redux';
 
 // 导入组件
 import Me from '../Me';
@@ -21,6 +22,7 @@ var store=createStore(reducer, compose(
     window.devToolsExtension()
 ))
 
+const history = syncHistoryWithStore(hashHistory, store);
 
 const R=React.createClass({
 
@@ -41,7 +43,7 @@ const R=React.createClass({
         return (
             <Provider store={store}>
 
-                <Router history={hashHistory}>
+                <Router history={history}>
                     <Route path="/" component={ Home }/>
                     <Route path="/login" component={Login}/>
                     <Route path="/home" component={Home}>

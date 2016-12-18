@@ -30,15 +30,15 @@ const AsideCollapse=React.createClass({
                     <span>{userName}</span> <Badge className="ant-layout-status" status="success"/>
                 </div>
                 <Menu mode="inline" theme="dark" selectedKeys={[SelectedKeys]} onClick={handleMenuClick}>
-                    <Menu.Item key="/home">
+                    <Menu.Item key="/home" title="首页">
                         <Icon type="home"/>
                         {!collapse && <span className="nav-text">首页</span>}
                     </Menu.Item>
-                    <Menu.Item key="/home/me">
+                    <Menu.Item key="/home/me" title="我的项目">
                         <Icon type="user"/>
                         {!collapse && <span className="nav-text">我的项目</span>}
                     </Menu.Item>
-                    <Menu.Item key="/home/projects">
+                    <Menu.Item key="/home/projects" title="所有项目">
                         <Icon type="github"/>
                         {!collapse && <span className="nav-text">所有项目</span>}
                     </Menu.Item>

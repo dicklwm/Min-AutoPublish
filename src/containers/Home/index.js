@@ -6,8 +6,11 @@ import {connect} from 'react-redux';
 import * as actions from '../../actions';
 import {bindActionCreators} from 'redux';
 import {init, logout} from '../../api';
-import {message} from 'antd';
+import {message, Modal} from 'antd';
 import {hashHistory} from 'react-router';
+const confirm=Modal.confirm;
+
+//Layout布局
 import AsideCollapse from '../../components/Layout/AsideCollapse';
 import Header from '../../components/Layout/Header';
 // import Footer from '../../components/Layout/Footer';
@@ -18,8 +21,6 @@ const Home=React.createClass({
     getInitialState() {
         return {
             collapse: true,
-            SelectedKeys: '',
-            BreadcrumbItem: []
         };
     },
     onCollapseChange() {
@@ -58,10 +59,10 @@ const Home=React.createClass({
                     collapse={collapse}
                     onCollapseChange={this.onCollapseChange}
                     handleMenuClick={e => this.handleMenuClick(e)}
-                    SelectedKeys={this.state.SelectedKeys}
+                    SelectedKeys={this.props.location.pathname}
                 />
 
-                <Header Logout={this.handleLogout} SelectedKeys={this.state.SelectedKeys}/>
+                <Header Logout={this.handleLogout} SelectedKeys={this.props.location.pathname}/>
                 {/*内容 + 嵌套路由*/}
                 <Container>
                     {this.props.children}
@@ -71,26 +72,25 @@ const Home=React.createClass({
         )
     },
 
-    //路由发生改变时触发，改变选择项
-    componentWillReceiveProps(){
-        this.setState({
-            SelectedKeys: hashHistory.getCurrentLocation().pathname
-        })
-    },
-
     //处理登出
     handleLogout(){
-        //调用logout接口
-        logout(function (res) {
-            console.log(res);
-            hashHistory.push('login');
+        confirm({
+            title: '登出',
+            content: '是否确认需要登出？',
+            onOk() {
+                //调用logout接口
+                logout(function (res) {
+                    console.log(res);
+                    hashHistory.push('login');
+                })
+            }
         })
+
+
     },
 
     handleMenuClick(e){
-
         hashHistory.push(e.key);
-
     },
 
 
