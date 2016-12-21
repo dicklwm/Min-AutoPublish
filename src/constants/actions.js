@@ -1,8 +1,6 @@
 /**
  * Created by Min on 2016-12-13.
  */
-export const GET_INIT= 'get-Init';
-export const GET_DETAIL = 'get-Detail';
-export const CREATE_PROJECT = 'create-Project';
-export const CHANGE_ROUTE = 'Change-Route';
-export const CHANGE_LOADING = 'Change-Loading';
+export const GET_INIT= 'GET_INIT';
+export const GET_DETAIL = 'GET_DETAIL';
+export const CREATE_PROJECT = 'CREATE_PROJECT';

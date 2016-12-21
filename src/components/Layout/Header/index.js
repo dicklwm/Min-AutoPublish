@@ -71,6 +71,10 @@ export default class Header extends Component {
                     to='home/projects';
                     text='所有项目'
                     break;
+                case 'repo':
+                    icon='code';
+                    text='项目'
+                    break;
                 default:
                     return false;
             }

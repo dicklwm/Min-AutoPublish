@@ -4,12 +4,16 @@
 import {combineReducers} from 'redux';
 import info from './info';
 import users from './users';
-import { routerReducer } from 'react-router-redux'
+import detail from './detail';
+import loading from './loading';
+import {routerReducer} from 'react-router-redux';
 
-const reducers = combineReducers({
+const reducers=combineReducers({
     info,
     users,
-    routing:routerReducer
+    detail,
+    routing: routerReducer,
+    loading
 });
 
 export default reducers;

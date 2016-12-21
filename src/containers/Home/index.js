@@ -5,8 +5,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions';
 import {bindActionCreators} from 'redux';
-import {init, logout} from '../../api';
-import {message, Modal} from 'antd';
+import {logout, init} from '../../api';
+import {Modal} from 'antd';
 import {hashHistory} from 'react-router';
 const confirm=Modal.confirm;
 
@@ -31,19 +31,19 @@ const Home=React.createClass({
 
     componentDidMount(){
         console.log('Home DidMount Init初始化数据');
-        const {actions} =this.props;
-        init(function (res) {
-            if (!!res.noLogin) {
-                hashHistory.push('login');
-            } else {
-                actions.getInit(res);
-                message.success('初始化数据成功');
-            }
-
-        }, function (err) {
-            message.error('初始化数据失败！' + err);
-            console.log(err);
-        });
+        const {noLogin} = this.props.info;
+        if (noLogin) {
+            init(function (res) {
+                if (!!res.noLogin) {
+                    hashHistory.push('login');
+                }
+                else {
+                    actions.getInit(res);
+                }
+            }, function (err) {
+                console.log(err);
+            });
+        }
     },
 
     render(){
@@ -61,13 +61,13 @@ const Home=React.createClass({
                     handleMenuClick={e => this.handleMenuClick(e)}
                     SelectedKeys={this.props.location.pathname}
                 />
-
                 <Header Logout={this.handleLogout} SelectedKeys={this.props.location.pathname}/>
                 {/*内容 + 嵌套路由*/}
-                <Container>
+                <Container loading={this.props.loading}>
                     {this.props.children}
                 </Container>
                 {/*<Footer/>*/}
+
             </div>
         )
     },
@@ -97,7 +97,8 @@ const Home=React.createClass({
 })
 
 const mapStateToProps=state => ({
-    info: state.info
+    info: state.info,
+    loading: state.loading
 });
 
 const mapDispatchToProps=dispatch => ({

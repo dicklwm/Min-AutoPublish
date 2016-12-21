@@ -2,14 +2,13 @@
  * Created by Min on 2016-12-09.
  */
 import React from 'react';
-import {Form, Icon, Input, Button, Checkbox, Row, Col, message} from 'antd';
+import {Form, Icon, Input, Button, Checkbox, Row, Col} from 'antd';
 import './index.css';
-import {login} from '../../api';
-import {hashHistory} from 'react-router';
+
 
 const FormItem=Form.Item;
 
-const Login=Form.create()(React.createClass({
+const LoginForm=Form.create()(React.createClass({
 
     render(){
         const {getFieldDecorator} = this.props.form;
@@ -62,7 +61,7 @@ const Login=Form.create()(React.createClass({
                                         登录
                                     </Button>
                                     <Button type="guest" htmlType="button" className=" login-form-button"
-                                            onClick={this.handleRegisterClick}>
+                                            onClick={this.props.handleRegisterClick}>
                                         注册
                                     </Button>
 
@@ -78,39 +77,15 @@ const Login=Form.create()(React.createClass({
 
     handleLoginClick(){
         const {getFieldValue} = this.props.form;
-        var loading=message.loading('正在登陆，请稍等', 0);
+
         var query={
             name: getFieldValue('userName') || '',
             password: getFieldValue('password') || ''
         };
-
-
-        login(query,
-            function (res) {
-                console.log(res);
-                //关闭loading
-                loading();
-                if (!res.noLogin) {
-                    message.success('登陆成功，欢迎您：' + query.name, 1.5);
-                    hashHistory.push('home');
-                } else {
-                    message.error('登陆失败，请检查账号密码。', 3);
-                }
-
-            },
-            function (err) {
-                loading();
-                message.error(err, 3);
-            }
-        )
-
-
-    },
-
-    handleRegisterClick(){
-
+        this.props.handleLoginClick(query);
     }
+
 
 }))
 
-export default Login;
+export default LoginForm;

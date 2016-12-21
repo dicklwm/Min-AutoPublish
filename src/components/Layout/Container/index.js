@@ -3,6 +3,7 @@
  */
 import React, {PropTypes, Component} from 'react'
 import './index.css';
+import {Spin} from 'antd';
 
 export default class Container extends Component {
 
@@ -13,10 +14,11 @@ export default class Container extends Component {
     render() {
         return (
             <article className="ant-layout-container">
-
-                <div className="ant-layout-content">
-                    {this.props.children}
-                </div>
+                <Spin spinning={this.props.loading}>
+                    <div className="ant-layout-content">
+                        {this.props.children}
+                    </div>
+                </Spin>
             </article>
         )
     }
