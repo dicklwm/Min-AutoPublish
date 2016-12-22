@@ -6,7 +6,7 @@ import React from 'react';
 
 import {init} from '../../api';
 import {Provider} from 'react-redux';
-import {createStore, compose, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import reducer from '../../reducers';
 import {syncHistoryWithStore} from 'react-router-redux';
 import {getInit} from '../../actions';
@@ -39,8 +39,8 @@ const R=React.createClass({
             if (!!res.noLogin) {
                 hashHistory.push('login');
             } else {
-                if (hashHistory.getCurrentLocation().pathname!=='/home')
-                    hashHistory.push('/home');
+                // if (hashHistory.getCurrentLocation().pathname!=='/home')
+                //     hashHistory.push('/home');
                 //向store填充数据
                 store.dispatch(getInit(res));
             }

@@ -36,3 +36,25 @@ export function logout(successCb, errorCb) {
             successCb(res.body);
         })
 }
+
+export function detail(query, successCb, errorCb) {
+    request
+        .get(url.api.detail)
+        .query(query)
+        .withCredentials()
+        .end(function (err, res) {
+            if (err) return errorCb(err);
+            successCb(res.body);
+        })
+}
+
+export function makeAPI(url,query,successCb, errorCb) {
+        request
+            .get(url)
+            .query(query)
+            .withCredentials()
+            .end(function (err, res) {
+                if (err) return errorCb(err);
+                successCb(res.body);
+            })
+}

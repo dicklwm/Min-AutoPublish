@@ -2,10 +2,7 @@
  * Created by Min on 2016-12-19.
  */
 import React from 'react';
-import {login} from '../../api';
-import {hashHistory} from 'react-router';
 import {connect} from 'react-redux';
-import {message} from 'antd';
 import LoginForm from '../../components/LoginForm';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../actions';

@@ -2,9 +2,11 @@
  * Created by Min on 2016-12-13.
  */
 import * as TypeOfActions from '../constants/actions';
-import {login, init} from '../api';
+import {login, init, detail, makeAPI} from '../api';
 import {message} from 'antd';
 import {hashHistory} from 'react-router';
+import * as urls from '../constants/url';
+
 
 export function getInit(obj) {
     return {
@@ -17,7 +19,7 @@ export function getInit(obj) {
 
 export function Login(query) {
 
-    return dispatch=> {
+    return dispatch => {
         var loading=message.loading('正在登陆，请稍等', 0);
         login(query,
             function (LoginRes) {
@@ -49,4 +51,128 @@ export function Login(query) {
             })
     }
 
+}
+
+export function getDetail(query) {
+
+    return dispatch => {
+        detail(query, function (res) {
+            dispatch({
+                type: TypeOfActions.GET_DETAIL,
+                data: res
+            });
+        }, function (err) {
+            message.error(err);
+        })
+    }
+}
+
+export function checkout(query) {
+    return dispatch => {
+
+        makeAPI(
+            urls.api.checkout,
+            query,
+            function (res) {
+                dispatch({
+                    type: TypeOfActions.CHECKOUT,
+                    data: res
+                });
+            },
+            function (err) {
+                message.error(err);
+            }
+        )
+
+    }
+}
+
+export function branch(query) {
+    return dispatch => {
+        makeAPI(
+            urls.api.branch,
+            query,
+            function (res) {
+                dispatch({
+                    type: TypeOfActions.CHECKOUT,
+                    data: res
+                });
+            },
+            function (err) {
+                message.error(err);
+            }
+        )
+    }
+}
+
+export function editDeploy(query) {
+    return dispatch => {
+        makeAPI(
+            urls.api.editDeploy,
+            query,
+            function (res) {
+                dispatch({
+                    type: TypeOfActions.CHECKOUT,
+                    data: res
+                });
+            },
+            function (err) {
+                message.error(err);
+            }
+        )
+    }
+}
+
+export function reset(query) {
+    return dispatch => {
+        makeAPI(
+            urls.api.reset,
+            query,
+            function (res) {
+                dispatch({
+                    type: TypeOfActions.CHECKOUT,
+                    data: res
+                });
+            },
+            function (err) {
+                message.error(err);
+            }
+        )
+    }
+}
+
+export function pull(query) {
+    return dispatch => {
+        makeAPI(
+            urls.api.pull,
+            query,
+            function (res) {
+                dispatch({
+                    type: TypeOfActions.CHECKOUT,
+                    data: res
+                });
+            },
+            function (err) {
+                message.error(err);
+            }
+        )
+    }
+}
+
+export function deploy(query) {
+    return dispatch => {
+        makeAPI(
+            urls.api.deploy,
+            query,
+            function (res) {
+                dispatch({
+                    type: TypeOfActions.CHECKOUT,
+                    data: res
+                });
+            },
+            function (err) {
+                message.error(err);
+            }
+        )
+    }
 }
