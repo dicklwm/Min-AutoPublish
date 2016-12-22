@@ -2,10 +2,11 @@
  * Created by Min on 2016-12-21.
  */
 import React from 'react';
-import {Tabs, Card, Icon} from 'antd';
+import {Tabs, Card, Icon, Table} from 'antd';
 import './index.css';
 
-const TabPane=Tabs.TabPane;
+const TabPane=Tabs.TabPane,
+    {Column} = Table;
 
 const RepoDetail=({detail}) => {
 
@@ -65,13 +66,28 @@ const RepoDetail=({detail}) => {
             </TabPane>
 
             <TabPane tab="commit信息" key="commit">
-                Content of Tab 3
+
+                <Table
+                    dataSource={detail.commit_info}
+                    bordered
+                    expandedRowRender={record => <p>{record.sha}</p>}
+                    columns={columns}
+                >
+                </Table>
+
             </TabPane>
 
         </Tabs>
     )
 
 }
+
+const columns = [
+    { title: 'sha', dataIndex: 'sha', key: 'sha' },
+    { title: 'raw', dataIndex: 'committer.raw', key: 'committer.raw' },
+    { title: 'message', dataIndex: 'message', key: 'message' },
+    { title: 'time', dataIndex: 'time', key: 'time' },
+];
 
 const FoldersCard=({folderName, isActive}) => {
     return (

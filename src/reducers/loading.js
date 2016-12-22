@@ -15,6 +15,8 @@ export default  function loading(state=true, action) {
                     return false;
                 }
                 break;
+        case 'CHANGE-LOADING':
+            return action.payload;
         default:
             return state;
     }

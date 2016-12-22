@@ -56,11 +56,13 @@ export function Login(query) {
 export function getDetail(query) {
 
     return dispatch => {
+        dispatch(changeLoading(true));
         detail(query, function (res) {
             dispatch({
                 type: TypeOfActions.GET_DETAIL,
                 data: res
             });
+            dispatch(changeLoading(false));
         }, function (err) {
             message.error(err);
         })
@@ -161,6 +163,7 @@ export function pull(query) {
 
 export function deploy(query) {
     return dispatch => {
+        dispatch(changeLoading(true));
         makeAPI(
             urls.api.deploy,
             query,
@@ -169,10 +172,18 @@ export function deploy(query) {
                     type: TypeOfActions.CHECKOUT,
                     data: res
                 });
+                dispatch(changeLoading(false));
             },
             function (err) {
                 message.error(err);
             }
         )
+    }
+}
+
+function changeLoading(obj) {
+    return {
+        type: 'CHANGE-LOADING',
+        payload: obj
     }
 }
