@@ -21,6 +21,12 @@ const Repo=React.createClass({
                 <h2>Repo</h2>
                 <RepoDetail
                     detail={this.props.detail}
+                    checkout={branchId=>this.checkout(branchId)}
+                    branch={branchId=>this.branch(branchId)}
+                    editDeploy={folder=>this.editDeploy(folder)}
+                    reset={sha=>this.reset(sha)}
+                    pull={this.pull}
+                    deploy={this.deploy}
                 />
             </div>
         )
@@ -41,10 +47,8 @@ const Repo=React.createClass({
     },
 
     editDeploy(folder){
-        const {params, actions} = this.props,
-            {id} = params,
-            {editDeploy}=actions;
-        editDeploy({repo_id: id, deploy: folder});
+        const {editDeploy}=this.props.actions;
+        editDeploy({deploy: folder});
     },
 
     reset(sha){
@@ -71,7 +75,6 @@ const Repo=React.createClass({
 
 
 const mapStateToProps=state => ({
-    MeInfo: state.info.info,
     detail: state.detail
 });
 

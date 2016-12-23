@@ -5,7 +5,7 @@ import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as actions from '../../actions';
-import {Row, Col} from 'antd';
+import {Row, Col,Button} from 'antd';
 import ProjectCard from '../../components/ProjectCard';
 
 const Me=React.createClass({
@@ -14,6 +14,9 @@ const Me=React.createClass({
     render(){
         return (
             <Row>
+                <div>
+                    <Button type="primary" icon="plus">创建项目</Button>
+                </div>
                 {this.makeCards()}
             </Row>
         )

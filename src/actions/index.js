@@ -96,7 +96,7 @@ export function branch(query) {
             query,
             function (res) {
                 dispatch({
-                    type: TypeOfActions.CHECKOUT,
+                    type: TypeOfActions.BRANCH,
                     data: res
                 });
             },
@@ -114,7 +114,7 @@ export function editDeploy(query) {
             query,
             function (res) {
                 dispatch({
-                    type: TypeOfActions.CHECKOUT,
+                    type: TypeOfActions.EDIT_DEPLOY,
                     data: res
                 });
             },
@@ -132,7 +132,7 @@ export function reset(query) {
             query,
             function (res) {
                 dispatch({
-                    type: TypeOfActions.CHECKOUT,
+                    type: TypeOfActions.RESET,
                     data: res
                 });
             },
@@ -150,7 +150,7 @@ export function pull(query) {
             query,
             function (res) {
                 dispatch({
-                    type: TypeOfActions.CHECKOUT,
+                    type: TypeOfActions.PULL,
                     data: res
                 });
             },
@@ -169,7 +169,7 @@ export function deploy(query) {
             query,
             function (res) {
                 dispatch({
-                    type: TypeOfActions.CHECKOUT,
+                    type: TypeOfActions.DEPLOY,
                     data: res
                 });
                 dispatch(changeLoading(false));
