@@ -8,7 +8,6 @@ import * as actions from '../../actions';
 import RepoDetail from '../../components/RepoDetail';
 
 const Repo=React.createClass({
-
     componentDidMount() {
         const {params}=this.props,
             {getDetail}=this.props.actions;
@@ -21,10 +20,10 @@ const Repo=React.createClass({
                 <h2>Repo</h2>
                 <RepoDetail
                     detail={this.props.detail}
-                    checkout={branchId=>this.checkout(branchId)}
-                    branch={branchId=>this.branch(branchId)}
-                    editDeploy={folder=>this.editDeploy(folder)}
-                    reset={sha=>this.reset(sha)}
+                    checkout={branchId => this.checkout(branchId)}
+                    branch={branchId => this.branch(branchId)}
+                    editDeploy={folder => this.editDeploy(folder)}
+                    reset={sha => this.reset(sha)}
                     pull={this.pull}
                     deploy={this.deploy}
                 />
@@ -47,8 +46,10 @@ const Repo=React.createClass({
     },
 
     editDeploy(folder){
-        const {editDeploy}=this.props.actions;
-        editDeploy({deploy: folder});
+        const {params, actions} = this.props,
+            {id} = params,
+            {editDeploy}=actions;
+        editDeploy({repo_id: id, deploy: folder});
     },
 
     reset(sha){

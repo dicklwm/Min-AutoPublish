@@ -7,7 +7,7 @@ import './index.css';
 
 const TabPane=Tabs.TabPane;
 
-const RepoDetail=({detail,editDeploy,checkout,branch,pull,reset}) => {
+const RepoDetail=({detail,editDeploy,checkout,branch,pull,reset,deploy}) => {
 
     //生成文件夹的Card
     function makeFoldersCard() {
@@ -81,6 +81,7 @@ const RepoDetail=({detail,editDeploy,checkout,branch,pull,reset}) => {
             <TabPane tab="基本信息" key="info" className="infoPane">
 
                 <div>
+                    <Button type="primary" onClick={e=>deploy()}>上线</Button>
                     <Button type="primary" onClick={e=>pull()}>Pull</Button>
                 </div>
                 <h4>项目拥有人：{detail.admin.name}</h4>

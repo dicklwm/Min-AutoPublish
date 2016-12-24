@@ -3,7 +3,7 @@
  */
 import * as TypeOfActions from '../constants/actions';
 import {login, init, detail, makeAPI} from '../api';
-import {message} from 'antd';
+import {message, notification} from 'antd';
 import {hashHistory} from 'react-router';
 import * as urls from '../constants/url';
 
@@ -58,10 +58,7 @@ export function getDetail(query) {
     return dispatch => {
         dispatch(changeLoading(true));
         detail(query, function (res) {
-            dispatch({
-                type: TypeOfActions.GET_DETAIL,
-                data: res
-            });
+            dispatch(setDetail(res));
             dispatch(changeLoading(false));
         }, function (err) {
             message.error(err);
@@ -69,9 +66,16 @@ export function getDetail(query) {
     }
 }
 
+function setDetail(res) {
+    return {
+        type: TypeOfActions.GET_DETAIL,
+        data: res
+    }
+}
+
 export function checkout(query) {
     return dispatch => {
-
+        dispatch(changeLoading(true));
         makeAPI(
             urls.api.checkout,
             query,
@@ -80,6 +84,9 @@ export function checkout(query) {
                     type: TypeOfActions.CHECKOUT,
                     data: res
                 });
+                notification.info({message: "提示", description: res.msg1});
+                dispatch(setDetail(res));
+                dispatch(changeLoading(false));
             },
             function (err) {
                 message.error(err);
@@ -91,6 +98,7 @@ export function checkout(query) {
 
 export function branch(query) {
     return dispatch => {
+        dispatch(changeLoading(true));
         makeAPI(
             urls.api.branch,
             query,
@@ -99,6 +107,9 @@ export function branch(query) {
                     type: TypeOfActions.BRANCH,
                     data: res
                 });
+                notification.info({message: "提示", description: res.msg1});
+                dispatch(setDetail(res));
+                dispatch(changeLoading(false));
             },
             function (err) {
                 message.error(err);
@@ -109,6 +120,7 @@ export function branch(query) {
 
 export function editDeploy(query) {
     return dispatch => {
+        dispatch(changeLoading(true));
         makeAPI(
             urls.api.editDeploy,
             query,
@@ -117,6 +129,8 @@ export function editDeploy(query) {
                     type: TypeOfActions.EDIT_DEPLOY,
                     data: res
                 });
+                dispatch(setDetail(res));
+                dispatch(changeLoading(false));
             },
             function (err) {
                 message.error(err);
@@ -127,6 +141,7 @@ export function editDeploy(query) {
 
 export function reset(query) {
     return dispatch => {
+        dispatch(changeLoading(true));
         makeAPI(
             urls.api.reset,
             query,
@@ -135,6 +150,9 @@ export function reset(query) {
                     type: TypeOfActions.RESET,
                     data: res
                 });
+                notification.info({message: "提示", description: res.msg1});
+                dispatch(setDetail(res));
+                dispatch(changeLoading(false));
             },
             function (err) {
                 message.error(err);
@@ -145,6 +163,7 @@ export function reset(query) {
 
 export function pull(query) {
     return dispatch => {
+        dispatch(changeLoading(true));
         makeAPI(
             urls.api.pull,
             query,
@@ -153,6 +172,8 @@ export function pull(query) {
                     type: TypeOfActions.PULL,
                     data: res
                 });
+                dispatch(setDetail(res));
+                dispatch(changeLoading(false));
             },
             function (err) {
                 message.error(err);
@@ -172,6 +193,9 @@ export function deploy(query) {
                     type: TypeOfActions.DEPLOY,
                     data: res
                 });
+                res.action==='successful' ?
+                    notification.success({message: "成功", description: res.action}) :
+                    notification.error({message: "错误", description: res.action})
                 dispatch(changeLoading(false));
             },
             function (err) {
@@ -185,5 +209,25 @@ function changeLoading(obj) {
     return {
         type: 'CHANGE-LOADING',
         payload: obj
+    }
+}
+
+
+export function createProject(query) {
+    return dispatch=>{
+        makeAPI(
+            urls.api.clone,
+            query,
+            function (res) {
+                dispatch({
+                    type: TypeOfActions.CREATE_PROJECT,
+                    data: res
+                });
+                dispatch(changeLoading(false));
+            },
+            function (err) {
+                message.error(err);
+            }
+        )
     }
 }

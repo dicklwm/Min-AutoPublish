@@ -20,7 +20,8 @@ const InitState={
 export default  function detail(state=InitState, action) {
     switch (action.type) {
         case TypeOfActions.GET_DETAIL:
-            return {...state,...action.data};
+        case TypeOfActions.CREATE_PROJECT:
+            return {...state, ...action.data};
         default:
             return state;
     }
