@@ -29,16 +29,16 @@ const AsideCollapse=React.createClass({
                 <div className="ant-layout-userName">
                     <span>{userName}</span> <Badge className="ant-layout-status" status="success"/>
                 </div>
-                <Menu mode="inline" theme="dark" selectedKeys={[SelectedKeys]} onClick={handleMenuClick}>
-                    <Menu.Item key="/home" title="首页">
+                <Menu mode="inline" theme="dark" defaultSelectedKeys={SelectedKeys} onClick={handleMenuClick}>
+                    <Menu.Item key="index" title="云盘">
                         <Icon type="home"/>
                         {!collapse && <span className="nav-text">首页</span>}
                     </Menu.Item>
-                    <Menu.Item key="/home/me" title="我的项目">
+                    <Menu.Item key="me" title="我的项目">
                         <Icon type="user"/>
                         {!collapse && <span className="nav-text">我的项目</span>}
                     </Menu.Item>
-                    <Menu.Item key="/home/projects" title="所有项目">
+                    <Menu.Item key="projects" title="所有项目">
                         <Icon type="github"/>
                         {!collapse && <span className="nav-text">所有项目</span>}
                     </Menu.Item>

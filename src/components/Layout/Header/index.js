@@ -56,19 +56,19 @@ export default class Header extends Component {
 
         path.map(function (obj, i) {
             switch (obj){
-                case 'home':
+                case 'index':
                     icon='home';
-                    to='home';
-                    text='首页';
+                    to='index';
+                    text='云盘';
                     break;
                 case 'me':
                     icon='user';
-                    to='home/me';
+                    to='me';
                     text='我的项目';
                     break;
                 case 'projects':
                     icon='github';
-                    to='home/projects';
+                    to='projects';
                     text='所有项目'
                     break;
                 case 'repo':

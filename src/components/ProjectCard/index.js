@@ -6,9 +6,9 @@ import {Card, Badge} from 'antd';
 import './index.css';
 import {Link} from 'react-router';
 
-const ProjectCard=({obj}) => {
+const ProjectCard=({obj, from}) => {
     return (
-        <Link to={"home/repo/" + obj.id}>
+        <Link to={from + "/repo/" + obj.id}>
             <Card
                 className="project-card"
                 title={obj.name}

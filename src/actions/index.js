@@ -39,7 +39,7 @@ export function Login(query) {
                         message.error(InitErr, 3);
                         console.log(InitErr);
                     });
-                    hashHistory.push('home');
+                    hashHistory.push('index');
                 } else {
                     message.error('登陆失败，请检查账号密码。', 3);
                 }

@@ -54,14 +54,14 @@ const R=React.createClass({
             <Provider store={store}>
 
                 <Router history={history}>
-                    <Route path="/" component={ Home }/>
-                    <Route path="/login" component={Login}/>
-                    <Route path="/home" component={Home}>
+                    <Route path="/" component={ Home }>
                         <IndexRoute component={Index}/>
+                        <Route path="index" component={Index}/>
                         <Route path="me" component={Me}/>
-                        <Route path='repo/:id' component={Repo}/>
+                        <Route path='/**/repo/:id' component={Repo}/>
                         <Route path="projects" component={Projects}/>
                     </Route>
+                    <Route path="/login" component={Login}/>
                     {/*<Route path="*" component={Page404}/>*/}
                 </Router>
 

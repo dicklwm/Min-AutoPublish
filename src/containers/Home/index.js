@@ -13,8 +13,8 @@ const confirm=Modal.confirm;
 //Layout布局
 import AsideCollapse from '../../components/Layout/AsideCollapse';
 import Header from '../../components/Layout/Header';
-// import Footer from '../../components/Layout/Footer';
 import Container from '../../components/Layout/Container';
+// import Footer from '../../components/Layout/Footer';
 
 const Home=React.createClass({
 
@@ -59,7 +59,7 @@ const Home=React.createClass({
                     collapse={collapse}
                     onCollapseChange={this.onCollapseChange}
                     handleMenuClick={e => this.handleMenuClick(e)}
-                    SelectedKeys={this.props.location.pathname}
+                    SelectedKeys={this.props.location.pathname.split('/')}
                 />
                 <Header Logout={this.handleLogout} SelectedKeys={this.props.location.pathname}/>
                 {/*内容 + 嵌套路由*/}

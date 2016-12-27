@@ -17,7 +17,7 @@ const Repo=React.createClass({
     render() {
         return (
             <div>
-                <h2>Repo</h2>
+                <h2>{this.props.detail.name}</h2>
                 <RepoDetail
                     detail={this.props.detail}
                     checkout={branchId => this.checkout(branchId)}

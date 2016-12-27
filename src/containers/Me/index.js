@@ -65,7 +65,7 @@ const Me=React.createClass({
             return project.map(
                 (obj, i) =>
                     <Col xs={24} sm={12} md={8} lg={6} key={i}>
-                        <ProjectCard obj={obj} key={i}/>
+                        <ProjectCard obj={obj} key={i} from="me"/>
                     </Col>
             );
         }
