@@ -22,6 +22,9 @@ export default  function detail(state=InitState, action) {
         case TypeOfActions.GET_DETAIL:
         case TypeOfActions.CREATE_PROJECT:
             return {...state, ...action.data};
+        case TypeOfActions.LOGOUT:
+        case TypeOfActions.CLEAR_DETAIL:
+            return InitState;
         default:
             return state;
     }

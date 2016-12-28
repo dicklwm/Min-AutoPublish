@@ -5,10 +5,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions';
 import {bindActionCreators} from 'redux';
-import {logout, init} from '../../api';
+import {init} from '../../api';
 import {Modal} from 'antd';
 import {hashHistory} from 'react-router';
-const confirm=Modal.confirm;
 
 //Layout布局
 import AsideCollapse from '../../components/Layout/AsideCollapse';
@@ -48,9 +47,10 @@ const Home=React.createClass({
 
     render(){
         const {collapse} =this.state,
-            {info}=this.props,
+            {info, location}=this.props,
             {name, logo}=info.info;
-
+        var {pathname}=location;
+        pathname=pathname.split('/');
         return (
             <div className={collapse ? "ant-layout-aside ant-layout-aside-collapse" : "ant-layout-aside"}>
                 <AsideCollapse
@@ -59,9 +59,9 @@ const Home=React.createClass({
                     collapse={collapse}
                     onCollapseChange={this.onCollapseChange}
                     handleMenuClick={e => this.handleMenuClick(e)}
-                    SelectedKeys={this.props.location.pathname.split('/')}
+                    SelectedKeys={pathname}
                 />
-                <Header Logout={this.handleLogout} SelectedKeys={this.props.location.pathname}/>
+                <Header Logout={this.handleLogout} SelectedKeys={pathname}/>
                 {/*内容 + 嵌套路由*/}
                 <Container loading={this.props.loading}>
                     {this.props.children}
@@ -74,15 +74,13 @@ const Home=React.createClass({
 
     //处理登出
     handleLogout(){
-        confirm({
+        Modal.confirm({
             title: '登出',
             content: '是否确认需要登出？',
-            onOk() {
-                //调用logout接口
-                logout(function (res) {
-                    console.log(res);
-                    hashHistory.push('login');
-                })
+            onOk: ()=>{
+                //调用logout的action
+                const {Logout} = this.props.actions;
+                Logout();
             }
         })
 

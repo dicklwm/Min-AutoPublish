@@ -2,7 +2,7 @@
  * Created by Min on 2016-12-13.
  */
 import * as TypeOfActions from '../constants/actions';
-import {login, init, detail, makeAPI} from '../api';
+import {login, init, detail, makeAPI, logout} from '../api';
 import {message, notification} from 'antd';
 import {hashHistory} from 'react-router';
 import * as urls from '../constants/url';
@@ -53,12 +53,33 @@ export function Login(query) {
 
 }
 
+export function Logout() {
+    return dispatch => {
+        logout(function (res) {
+            console.log(res);
+            hashHistory.push('login');
+            dispatch({
+                type: TypeOfActions.LOGOUT
+            })
+        })
+    }
+}
+
 export function getDetail(query) {
 
     return dispatch => {
         dispatch(changeLoading(true));
         detail(query, function (res) {
-            dispatch(setDetail(res));
+            if (res.error) {
+                dispatch(setDetail({}));
+                notification.error({message: '错误', description: res.msg});
+            } else {
+                //将拿到的detail改造一下，加入key和localTime
+                res.commit_info=res.commit_info.map(function (value, index) {
+                    return {...value, key: index, localTime: new Date(value.time * 1000).toLocaleString()};
+                });
+                dispatch(setDetail(res));
+            }
             dispatch(changeLoading(false));
         }, function (err) {
             message.error(err);
@@ -214,7 +235,7 @@ function changeLoading(obj) {
 
 
 export function createProject(query) {
-    return dispatch=>{
+    return dispatch => {
         makeAPI(
             urls.api.clone,
             query,

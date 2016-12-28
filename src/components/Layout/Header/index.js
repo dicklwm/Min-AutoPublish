@@ -49,7 +49,7 @@ export default class Header extends Component {
     //生成BreadcrumbItem
     makeBreadcrumbItem(){
         var node=[],
-            path=this.props.SelectedKeys.split('/'),
+            path=this.props.SelectedKeys,
             icon='',
             to='',
             text='';

@@ -29,8 +29,7 @@ const history=syncHistoryWithStore(hashHistory, store);
 
 const R=React.createClass({
 
-
-    componentDidMount(){
+    componentWillMount(){
         //进入路由前先init一下，如果需要登录的修改登录的state
 
         init(function (res) {
@@ -55,7 +54,6 @@ const R=React.createClass({
 
                 <Router history={history}>
                     <Route path="/" component={ Home }>
-                        <IndexRoute component={Index}/>
                         <Route path="index" component={Index}/>
                         <Route path="me" component={Me}/>
                         <Route path='/**/repo/:id' component={Repo}/>

@@ -1,0 +1,79 @@
+.folderCard {
+    float: left;
+    min-width: 100px;
+    min-height: 100px;
+    cursor: pointer;
+    text-align: center;
+    transition: all .5s ease-in-out;
+    }
+
+.folderCard .folderIcon {
+    font-size: 20px;
+    transition: all .5s ease-in-out;
+    }
+
+.folderCard .active {
+    color: #108ee9;
+    }
+
+.folderCard .folderName {
+    transition: all .5s ease-in-out;
+    }
+
+.folderCard:hover .folderName {
+    color: #108ee9;
+    transform: scale(1.5);
+    transition: all .5s ease-in-out;
+    }
+
+.folderCard:hover .folderIcon {
+    transform: scale(1.5);
+    transition: all .5s ease-in-out;
+    }
+
+.clearFix {
+    clear: both;
+    }
+
+.infoPane h4,
+.branchesPane h4 {
+    margin: 10px 0;
+    }
+
+.branchesPane .active-branch {
+    font-size: 20px;
+    }
+
+.branches {
+    margin: 0 10px;
+    font-size: 20px;
+    cursor: pointer;
+    float:left;
+    }
+
+.branches.active {
+    color: #108ee9;
+    }
+
+.branches:hover {
+    color: #2db7f5;
+    }
+
+.text-center{
+    text-align: center;
+    }
+
+.branches {
+    margin: 0 10px;
+    font-size: 20px;
+    cursor: pointer;
+    float: left;
+    }
+
+.branches.active {
+    color: #108ee9;
+    }
+
+.branches:hover {
+    color: #2db7f5;
+    }
