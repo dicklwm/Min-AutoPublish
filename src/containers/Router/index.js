@@ -1,7 +1,5 @@
-/**
- * Created by Min on 2016-12-11.
- */
-import {Router, Route, hashHistory, IndexRoute} from 'react-router';
+/** Created by Min on 2016-12-11. */
+import {Router, Route, hashHistory} from 'react-router';
 import React from 'react';
 
 import {init} from '../../api';
@@ -11,6 +9,7 @@ import reducer from '../../reducers';
 import {syncHistoryWithStore} from 'react-router-redux';
 import {getInit} from '../../actions';
 import thunk from 'redux-thunk';
+import createLogger  from 'redux-logger';
 
 // 导入组件
 import Me from '../Me';
@@ -20,8 +19,8 @@ import Index from '../Index';
 import Login from '../Login'
 import Home from '../Home';
 // import Page404 from '../../components/Page404';
-
-var store=createStore(reducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk)
+const logger = createLogger();
+var store=createStore(reducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk,logger)
 
 )
 

@@ -234,8 +234,10 @@ function changeLoading(obj) {
 }
 
 
-export function createProject(query) {
+export function createProject(query,successCB) {
+
     return dispatch => {
+        dispatch(changeLoading(true));
         makeAPI(
             urls.api.clone,
             query,
@@ -245,6 +247,7 @@ export function createProject(query) {
                     data: res
                 });
                 dispatch(changeLoading(false));
+                successCB();
             },
             function (err) {
                 message.error(err);

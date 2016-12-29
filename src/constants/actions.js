@@ -11,5 +11,3 @@ export const RESET='RESET';
 export const PULL='PULL';
 export const DEPLOY='DEPLOY';
 
-
-export const CLEAR_DETAIL = 'CLEAR_DETAIL';

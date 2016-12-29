@@ -31,8 +31,8 @@ const Repo=React.createClass({
                     <TabPane tab="基本信息" key="info" className="infoPane">
 
                         <div>
-                            <Button type="primary" onClick={e => this.deploy()}>上线</Button>
-                            <Button type="primary" onClick={e => this.pull()}>Pull</Button>
+                            <Button type="primary" onClick={e => this.deploy()} className="repo-btn">上线</Button>
+                            <Button type="primary" onClick={e => this.pull()} className="repo-btn">Pull</Button>
                         </div>
                         <h4>项目拥有人：{detail.admin.name}</h4>
                         <h4>项目描述：</h4><span>{detail.description}</span>

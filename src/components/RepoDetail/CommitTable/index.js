@@ -28,15 +28,25 @@ const CommitTable=({commit_info, reset}) => {
         }
     ];
 
-    //生成Filter过滤字段
+    //生成Filter过滤字段，**********需要优化*********
     function makeRawFilter() {
         var arr=[];
         for (let i in commit_info) {
             //使用for in 的时候需要先检查是不是有属性i
             if (commit_info.hasOwnProperty(i)) {
-                const raw=commit_info[i].committer.raw;
-                if (arr.includes(raw))
-                    arr.push({text: raw, value: raw});
+                console.log('make', commit_info[i]);
+                var isHas=false;
+                const raw=commit_info[i].committer.raw,
+                    obj={text: raw, value: raw};
+                //如果有相同值
+                arr.forEach(obj => {
+                    if (obj.value===raw) {
+                        isHas=true;
+                        return true;
+                    }
+                })
+                if (!isHas)
+                    arr.push(obj);
             }
         }
         return arr;
